@@ -36,15 +36,39 @@ function checkWinner(){
 }
 
 function doTurn(cell){
-
+  updateState(cell);
+  turn = turn + 1;
+  if(checkWinner()){
+    saveGame();
+    clearGame();
+  }
+  else if (turn === 9 && !checkWinner()){
+    setMessage("Tie game.");
+    saveGame();
+    clearGame();
+  }
 }
 
 function attachListeners(){
-
+  $('td').on('click', function(){
+    if (!$.text(this) && !checkWinner()){
+      doTurn(this);
+    }
+  })
+  $('#save').on('click', function(){
+    saveGame();
+  });
+  $('#previous').on('click', function(){
+    previousGame();
+  });
+  $('#clear').on('click', function(){
+    clearGame();
+  });
+  
 }
 
 function saveGame(){
-
+  @('td')
 }
 
 function previousGame(){
