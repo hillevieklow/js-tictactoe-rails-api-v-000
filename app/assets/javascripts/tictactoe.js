@@ -76,12 +76,12 @@ function saveGame(){
       data: {state: state},
       type: 'PATCH',
       url: `/games/${gameId}`
-    })
+    });
   }
   else {
     $.post('/games', {state:state}, function(game){
       gameId = game.data.id;
-    })
+    });
   }
 }
 
