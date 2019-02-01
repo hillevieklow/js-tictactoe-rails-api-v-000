@@ -86,7 +86,19 @@ function saveGame(){
 }
 
 function previousGame(){
-
+  $.get('/games', function(previousGames) {
+    $('#games').empty();
+    $('#message').empty();
+    previousGames.data.forEach(function(game){
+      if (previousGames.data.length !== 0){
+        $('#games').append(`<button id="gameId-${game.id}">Game ${game.id}</button><br>`);
+        $('#gameId-' + game.id).on('click', function(){
+          showGame(game.id);
+        });
+      });
+    });
+    
+  });
 }
 
 function clearGame(){
