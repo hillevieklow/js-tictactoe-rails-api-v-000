@@ -64,11 +64,13 @@ function attachListeners(){
   $('#clear').on('click', function(){
     clearGame();
   });
-  
+
 }
 
 function saveGame(){
-  @('td')
+  $('td').text(function(index, cell)){
+    state.push(cell);
+  }
 }
 
 function previousGame(){
