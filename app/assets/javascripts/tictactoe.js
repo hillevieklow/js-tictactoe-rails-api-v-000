@@ -68,8 +68,20 @@ function attachListeners(){
 }
 
 function saveGame(){
-  $('td').text(function(index, cell)){
+  $('td').text(function(index, cell){
     state.push(cell);
+  });
+  if (gameId){
+    $.ajax({
+      data: {state: state},
+      type: 'PATCH',
+      url: `/games/${gameId}`
+    })
+  }
+  else {
+    $.post('/games', {state:state}, function(game){
+      gameId = game.data.id;
+    })
   }
 }
 
